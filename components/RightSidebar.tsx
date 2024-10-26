@@ -1,5 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
+import Link from 'next/link'
+import BankCard from './BankCard';
 
 const RightSidebar = ({user, transactions, banks}:
     RightSidebarProps) => {
@@ -22,9 +24,9 @@ const RightSidebar = ({user, transactions, banks}:
             </div>
         </section>
         <section className='banks'>
-            <div className='flex w-full '>
+            <div className='flex w-full justify-between '>
                 <h2 className='header-2'>My Banks</h2>
-                <a href="/" className='flex gap-2'>
+                <Link href="/" className='flex gap-2'>
                     <Image
                         src='/icons/plus.svg'
                         width={20}
@@ -34,15 +36,27 @@ const RightSidebar = ({user, transactions, banks}:
                     <h2 className='text-14 font-semibold text-gray-600'>
                         Add Bank
                     </h2>
-                </a>
+                </Link>
             </div>
             {banks?.length > 0 && (
-                <div className='relative flex flex-1 flex-col justify-center gap-5 items-center'>
-                    BANK CARD 1
-                </div>)}
-                {banks[1] && (
-                    <div className='absolute right-0 top-8 z-0 w-[90%]'></div>
+                <div className='relative flex flex-1 flex-col items-center justify-center gap-5'>
+                    <div className='relative z-10'>
+                        <BankCard
+                        key={banks[0].$id}
+                        account={banks[0]}
+                        userName= {`${user.firstName} ${user.lastName}`}
+                        showBalance= {false} />
+                    </div>
+                    {banks[1] && (
+                    <div className='absolute right-0 top-8 z-0 w-[90%]'>
+                        <BankCard
+                        key={banks[1].$id}
+                        account={banks[1]}
+                        userName= {`${user.firstName} ${user.lastName}`}
+                        showBalance= {false} />
+                    </div>
                 )}
+                </div>)}
         </section>
     </aside>
   )

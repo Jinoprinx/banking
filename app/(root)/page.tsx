@@ -29,7 +29,7 @@ import RightSidebar from "@/components/RightSidebar";
             < RightSidebar
                 user={loggedIn}
                 transactions= {[]}
-                banks= {[{}, {}]}
+                banks= {[{currentBalance: 455.20}, {currentBalance: 1280.95}]}
                 />
         </section>
     )
